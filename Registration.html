@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Notion'18 - Registrations</title>
+
+
+    <!-- ====Open Sans==== -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700,700italic,800,300italic,600italic" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+    <!-- ====Bootstrap css==== -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- ====Material==== -->
+    <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+
+    <!-- ====Font awesome css==== -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+
+    <!-- ====Animate css==== -->
+    <link rel="stylesheet" href="css/animate.css">
+
+    <!-- ====Meanmenu css==== -->
+    <link rel="stylesheet" href="css/meanmenu.min.css">
+
+    <!-- ====VenoBox css==== -->
+    <link rel="stylesheet" href="css/venobox.css">
+
+    <!-- ====Camera css==== -->
+    <link rel="stylesheet" href="css/camera.css">
+
+    <!-- ====Owl carousel 2 css==== -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+
+    <!-- ====Custom css==== -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ====Favicons==== -->
+    <!--<link rel="apple-touch-icon-precomposed" href="img/favicon_app.png">-->
+    <link rel="shortcut icon" type="image/png" href="img/logo1.png" />
+
+    <!-- ====Institute-Course Selector==== -->
+    <script type= "text/javascript" src = "js/courses.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="js/html5shiv.min.js"></script>
+          <script src="js/respond.min.js"></script>
+        <![endif]-->
+    <style type="text/css">
+        a
+        {
+            color: #FF3A1E;
+            font-style: italic;
+        }
+        a:hover
+        {
+            color: #11C3F1;
+        }
+    </style>
+    <script src="js/registration.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body id="body" class="onepage Border_radius border_radius" onload="mandate(this)">
+    <div class="pealoader_area">
+        <!-- <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div> -->
+    </div>
+    <!-- ====HEADER AREA START==== -->
+    <header class="header_area navbar hidden-xs">
+        <div class="container-fluid">
+            <div class="row top_menu_area">
+                <div class="col-sm-12 col-md-2">
+                </div>
+                <div class="col-sm-12 col-md-10">
+                    <!-- Mobile Menu Start -->
+                    <nav class="mobile_menu hidden">
+                        <ul class="nav navbar-nav navbar-right menu">
+                            <li class="smoth-scroll active">
+                                <a data-hover="Home" href="index.html">Home</a>
+                            </li>
+                            <!-- <li class="smoth-scroll">
+                                <a data-hover="Events" href="#about">Events</a>
+                            </li>
+                            <li class="smoth-scroll">
+                                <a data-hover="Schedule" href="#schedule">Schedule</a>
+                            </li>
+                            <li class="smoth-scroll">
+                                <a data-hover="Speakers" href="#speakers">Our Team</a>
+                            </li>
+                            <li class="smoth-scroll">
+                                <a data-hover="Gallery" href="#gallery">Gallery</a>
+                            </li>
+                            <li class="smoth-scroll">
+                                <a data-hover="login" href="login.do">Login</a>
+                            </li>
+                            <li class="smoth-scroll">
+                                <a data-hover="Registration" href="Registration.html" target="_blank">Registration</a>
+                            </li>
+                            <li class="smoth-scroll">
+                                <a data-hover="Partners" href="#partners">Partners</a>
+                            </li> -->
+                            <li class="smoth-scroll">
+                                <a data-hover="Contact Us" href="#contact">Contact Us</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Mobile Menu End -->
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====HEADER AREA END==== -->
+
+    <div id="registration" class="registration section-padding">
+        <div class="container">
+            <div class="row mb70">
+                <div class="col-xs-12">
+                    <div class="section_title">
+                        <h2 class="sec_Hd">Registration</h2>
+                        <h5 class="sub_title">You can register only once with one email id, so select the events carefully...</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- <div class="col-sm-4"></div> -->
+                <div class="col-xs-12 col-sm-4">
+                    <div class="form">
+                        <form action="thankyou.php" method="post" autocomplete="on">
+                            <input type="text" name="enrollment" placeholder="Enrollment No." maxlength="12" required>
+                            <input type="text" name="firstname" placeholder="First Name" minlength="3" required>
+                            <input type="text" name="lastname" placeholder="Last Name" minlength="3" required>
+                            <input type="text" name="number" placeholder="Contact No." maxlength="10" minlength="10" id="phone" required onchange="phvalidate()">
+                            <div id="error_msg" style="display:none">Phone number must contain exactly 10 digits.</div>
+                            <input type="email" name="email" placeholder="Email" required>
+                            <select id="institute" name="institute"></select>
+                            <select name="course" id="course" required></select>
+                            <script language="javascript">
+                                populateInstitutes("institute", "course");
+                            </script>
+                            <!-- <input type="text" name="program" id="program" placeholder="Select your Event from below" disabled="disabled"> -->
+                            <!--<button name="submit" type="submit">Submit</button>-->
+                        <!--</form>-->
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="font-style: normal;color: white">
+                                           Workshop
+                                            <span class="fa fa-plus open-icon floatright"></span>
+                                            <span class="fa fa-minus close-icon floatright"></span>
+                                        </a>
+                                    </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <h4>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="solidworks" id="solidworks" value="solidworks"> Android Workshop: ₹750
+                                        </div>
+                                        <!--div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="fff" id="fff" value="fff"> FASTEST FINGER FIRST: ₹20
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="comagic" id="comagic" onchange="cmagic(this)"> CHEM-O-MAGIC: ₹70/TEAM<br/>
+                                            <select id="chmagic_drop" style="display: none" onchange="cmagic1(this)">
+                                                <option value="0" selected>Other Members</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4s">4</option>
+                                            </select>
+                                            <div id="chem1" style="display: none">
+                                                <span id="magic1" style="display: none;">
+                                                    <input type="text" name="chmagic_n1" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="chmagic_p1" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="magic2" style="display: none;">
+                                                    <input type="text" name="chmagic_n2" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="chmagic_p2" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="magic3" style="display: none;">
+                                                    <input type="text" name="chmagic_n3" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="chmagic_p3" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="magic4" style="display: none;">
+                                                    <input type="text" name="chmagic_n4" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="chmagic_p4" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="cocar" id="cocar" value="cocar" id="" onchange="ccar(this)"> CHEM-O-CAR: ₹70/TEAM
+                                            <select id="ccar_drop" style="display: none" onchange="ccar1(this)">
+                                                <option value="0" selected>Other Members</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                            <div id="chem2" style="display: none">
+                                                <span id="car1" style="display: none;">
+                                                    <input type="text" name="ccar_n1" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="ccar_p1" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="car2" style="display: none;">
+                                                    <input type="text" name="ccar_n2" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="ccar_p2" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="car3" style="display: none;">
+                                                    <input type="text" name="ccar_n3" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="ccar_p3" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="car4" style="display: none;">
+                                                    <input type="text" name="ccar_n4" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="ccar_p4" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="cohousie" id="cohousie" value="cohousie"> CHEM-O-HOUSIE: ₹30
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="dream" id="dream" value="dream" onclick="ljk(this)"> LJK: MY DREAM CAMPUS: ₹90/TEAM
+                                            <input style="width: 45%;display: none" type="text" name="ljk_n1" id="ljkn1" placeholder="Name 1">
+                                            <input style="width: 52%;display: none" type="text" name="ljk_p1" id="ljkp1" placeholder="Phone 1">
+                                            <input style="width: 45%;display: none" type="text" name="ljk_n2" id="ljkn2" placeholder="Name 2">
+                                            <input style="width: 52%;display: none" type="text" name="ljk_p2" id="ljkp2" placeholder="Phone 2">
+                                            <input style="width: 45%;display: none" type="text" name="ljk_n3" id="ljkn3" placeholder="Name 3">
+                                            <input style="width: 52%;display: none" type="text" name="ljk_p3" id="ljkp3" placeholder="Phone 3">
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="pop" id="pop" onchange="psb(this)"> POPSICLE STICK BRIDGE: ₹50/TEAM
+                                            <select id="psb_drop" style="display: none" onchange="psb1(this)">
+                                                <option value="0"  selected>Other Members</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                            <div id="civil1" style="display: none">
+                                                <span id="bridge1" style="display: none;">
+                                                    <input type="text" name="psb_n1" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="psb_p1" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="bridge2" style="display: none;">
+                                                    <input type="text" name="psb_n2" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="psb_p2" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="bridge3" style="display: none;">
+                                                    <input type="text" name="psb_n3" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="psb_p3" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="bridge4" style="display: none;">
+                                                    <input type="text" name="psb_n4" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="psb_p4" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="bbs" id="bbs"onchange="beg(this)"> BEG BORROW STEAL: ₹50/TEAM
+                                            <select id="beg_drop" style="display: none" onchange="beg1(this)">
+                                                <option value="0" selected>Other Members</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                            <div id="civil2" style="display: none">
+                                                <span id="bbs1" style="display: none;">
+                                                    <input type="text" name="beg_n1" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="beg_p1" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="bbs2" style="display: none;">
+                                                    <input type="text" name="beg_n2" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="beg_p2" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="bbs3" style="display: none;">
+                                                    <input type="text" name="beg_n3" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="beg_p3" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="bbs4" style="display: none;">
+                                                    <input type="text" name="beg_n4" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="beg_p4" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="intricate" id="intricate" value="intricate"> INTRICATE LOGICS: ₹30
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="cdoku" id="cdoku" value="cdoku"> C-DOKU: ₹30
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="cswap" id="cswap" value="cswap" onclick="pair(this)"> CODE SWAP: ₹40/TEAM<br/>
+                                            <input style="width: 45%;display: none" type="text" name="pair_n1" id="pairn1" placeholder="Name 1">
+                                            <input style="width: 52%;display: none" type="text" name="pair_p1" id="pairp1" placeholder="Phone 1">
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="sherlocked" id="sherlocked" value="sherlocked"> IT'S SHERLOCKED: ₹30
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="web" id="web" value="web"> WEB-O-THON: ₹30
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="curry" value="curry" id="curry" onclick="cc(this)"> CODE CURRY: ₹50/TEAM<br/>
+                                            <input style="width: 45%;display: none" type="text" name="cc_n1" id="ccn1" placeholder="Name 1">
+                                            <input style="width: 52%;display: none" type="text" name="cc_p1" id="ccp1" placeholder="Phone 1">
+                                            <input style="width: 45%;display: none" type="text" name="cc_n2" id="ccn2" placeholder="Name 2">
+                                            <input style="width: 52%;display: none" type="text" name="cc_p2" id="ccp2" placeholder="Phone 2">
+                                            <input style="width: 45%;display: none" type="text" name="cc_n3" id="ccn3" placeholder="Name 2">
+                                            <input style="width: 52%;display: none" type="text" name="cc_p3" id="ccp3" placeholder="Phone 2">
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="rwb" id="rwb" onchange="race(this)"> RACE WITH THE BITS: ₹150/TEAM 
+                                            <select id="race_drop" style="display: none" onchange="race1(this)">
+                                                <option value="0" selected>Other Members</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                            <div id="ce1" style="display: none">
+                                                <span id="rwb1" style="display: none;">
+                                                    <input type="text" name="race_n1" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="race_p1" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="rwb2" style="display: none;">
+                                                    <input type="text" name="race_n2" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="race_p2" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="rwb3" style="display: none;">
+                                                    <input type="text" name="race_n3" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="race_p3" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <!--div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="ed" id="ed" value="ed"> ERROR DEBUG: ₹30
+                                        </div-->
+                                        <!--div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="technosense" id="technosense" onchange="techno(this)"> TECHNOSENSE: ₹80/TEAM
+                                            <select id="techno_drop" style="display: none" onchange="techno1(this)">
+                                                <option value="0" selected>Other Members</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                            <div id="ec1" style="display: none">
+                                                <span id="ts1" style="display: none;">
+                                                    <input type="text" name="techno_n1" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="techno_p1" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="ts2" style="display: none;">
+                                                    <input type="text" name="techno_n2" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="techno_p2" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="mania" id="mania" onchange="circuit(this)"> CIRCUIT MANIA: ₹80/TEAM
+                                            <select id="circuit_drop" style="display: none" onchange="circuit1(this)">
+                                                <option value="0" selected>Other Members</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                            <div id="ec2" style="display: none">
+                                                <span id="cm1" style="display: none;">
+                                                    <input type="text" name="circuit_n1" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="circuit_p1" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="cm2" style="display: none;">
+                                                    <input type="text" name="circuit_n2" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="circuit_p2" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="grinders" id="grinders" value="grinders" onclick="mg(this)"> MIND GRINDERS: ₹50/TEAM
+                                            <input style="width: 45%;display: none" type="text" name="mg_n1" id="mgn1" placeholder="Name 1">
+                                            <input style="width: 52%;display: none" type="text" name="mg_p1" id="mgp1" placeholder="Phone 1">
+                                            <input style="width: 45%;display: none" type="text" name="mg_n2" id="mgn2" placeholder="Name 2">
+                                            <input style="width: 52%;display: none" type="text" name="mg_p2" id="mgp2" placeholder="Phone 2">
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="matworks" id="matworks" value="matworks"> MATWORKS: ₹30
+                                        </div>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="font-style: normal;color: white">
+                                            Non-Technical
+                                            <span class="fa fa-plus open-icon floatright"></span>
+                                            <span class="fa fa-minus close-icon floatright"></span>
+                                        </a>
+                                    </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                 <div class="panel-body">
+                                    <h4>
+                                        <!--div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="cs" id="cs" value="cs" onclick="cstrike(this)"> COUNTER STRIKE: ₹100/TEAM<br/>
+                                            <input style="width: 45%;display: none" type="text" name="cstrike_n1" id="cstriken1" placeholder="Name 1">
+                                            <input style="width: 52%;display: none" type="text" name="cstrike_p1" id="cstrikep1" placeholder="Phone 1">
+                                            <input style="width: 45%;display: none" type="text" name="cstrike_n2" id="cstriken2" placeholder="Name 2">
+                                            <input style="width: 52%;display: none" type="text" name="cstrike_p2" id="cstrikep2" placeholder="Phone 2">
+                                            <input style="width: 45%;display: none" type="text" name="cstrike_n3" id="cstriken3" placeholder="Name 3">
+                                            <input style="width: 52%;display: none" type="text" name="cstrike_p3" id="cstrikep3" placeholder="Phone 3">
+                                            <input style="width: 45%;display: none" type="text" name="cstrike_n4" id="cstriken4" placeholder="Name 4">
+                                            <input style="width: 52%;display: none" type="text" name="cstrike_p4" id="cstrikep4" placeholder="Phone 4">
+                                        </div>
+                                        <!--div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="housie" id="housie" value="housie"> HOUSE OF LUCK: ₹20
+                                        </div-->
+                                        <!--div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="cr" id="cr" value="cr"> CLASH TOURNAMENT: ₹20
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="cr2v2" id="cr2v2" value="cr2v2" onclick="c2(this)"> CLASH 2V2: ₹40/TEAM<br/>
+                                            <input style="width: 45%;display: none" type="text" name="c2_n1" id="c2n1" placeholder="Name 1">
+                                            <input style="width: 52%;display: none" type="text" name="c2_p1" id="c2p1" placeholder="Phone 1">
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="treasure" id="treasure" value="treasure" onchange="thunt(this)"> TREASURE HUNT: ₹100/TEAM<br/>
+                                            <select id="thunt_drop" style="display: none" onchange="thunt1(this)">
+                                                <option value="0" selected>Other Members</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                            <div id="nt1" style="display: none">
+                                                <span id="treasure1" style="display: none;">
+                                                    <input type="text" name="thunt_n1" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="thunt_p1" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="treasure2" style="display: none;">
+                                                    <input type="text" name="thunt_n2" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="thunt_p2" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="treasure3" style="display: none;">
+                                                    <input type="text" name="thunt_n3" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="thunt_p3" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                                <span id="treasure4" style="display: none;">
+                                                    <input type="text" name="thunt_n4" placeholder="Name" style="width: 45%">
+                                                    <input type="text" name="thunt_p4" placeholder="Phone" style="width: 52%">
+                                                </span>
+                                            </div>
+                                        </div-->
+                                        <!--div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="methics" id="methics" value="methics" onclick="meth(this)"> M-ETHICS: ₹60/TEAM
+                                            <input style="width: 45%;display: none" type="text" name="meth_n1" id="methn1" placeholder="Name 1">
+                                            <input style="width: 52%;display: none" type="text" name="meth_p1" id="methp1" placeholder="Phone 1">
+                                            <input style="width: 45%;display: none" type="text" name="meth_n2" id="methn2" placeholder="Name 2">
+                                            <input style="width: 52%;display: none" type="text" name="meth_p2" id="methp2" placeholder="Phone 2">
+                                        </div>
+                                        <!--div class="col-xs-12 col-md-4">
+                                            <input type="checkbox" name="onemin" id="onemin" value="onemin"> ONE MINUTE GAMES: ₹20
+                                        </div-->
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <div style="margin-right: 4px; float: left"><input type="checkbox" id="rule" onchange="terms()"></div><div>I Hereby agree to follow all the <a href="https://drive.google.com/open?id=1L1AqB6kuFT34LJYmv9l-NAoMaZQ6LcTn" target="_blank">Rules and Regulations</a> of Notion.</div>
+                <!-- <span id="sel_event" style="display: none">Please Select at least one evemt.</span> -->
+                    <div class="form">
+                        <!--<form action="#" method="post">-->
+                            <input type="submit" value="Register!" id="subbtn" style="background: #FF3A1E;color: white;display: none; margin-top: 15px">
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!--====== PRICING & REGISTRATION END ======-->
+
+	<!--====== FOOTER AREA START ======-->
+    <footer id="contact" class="footer_area footer-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="contact_info">
+                                <h3>Contact <span>Us</span></h3>
+                                <ul class="address_info">
+                                    <li><i class="fa fa-map-marker"></i> L.J. Campus, Between Sarkhej Circle & Kataria Motors, S.G. Road, Ahmedabad - 382210</li>
+                                    <li><i class="fa fa-envelope-o"></i><!-- <a href="mailto:notion@ljinstitutes.edu.in">-->notion@ljinstitutes.edu.in<!--</a> --></li>
+                                    <li><i class="fa fa-phone"></i><a href="tel:+917405801330"> +91-9558233754</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="iconlink">
+                            <li>
+                                <a href="https://www.facebook.com/notionthetechfest/" target="_blank"> 
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://instagram.com/_u/Notion_ljiet/" target="_blank">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <p>&copy; Notion'18. All Rights Reserved</p>
+                    </div>
+                </div>
+            </div>
+            <div class="back-to-top">
+                <a href="#">
+                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!--====== FOOTER AREA END ======-->
+	<!-- ====jQuery Latest version==== -->
+    <script src="js/vendor/jquery-1.12.0.min.js"></script>
+
+    <!-- ====Google Maps API==== -->
+    <!--<script src="https://maps.googleapis.com/maps/api/js"></script>-->
+
+    <!-- ====Bootstrap JS==== -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- ====jQuery Counterup==== -->
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+
+    <!-- ====jQuery Countdown==== -->
+    <script src="js/jquery.lwtCountdown-1.0.js"></script>
+
+    <!-- ====jQuery Meanmenu==== -->
+    <script src="js/jquery.meanmenu.min.js"></script>
+
+    <!-- ====jQuery easing==== -->
+    <script src="js/jquery.easing.1.3.min.js"></script>
+
+    <!-- ====jQuery owl carousel==== -->
+    <script src="js/owl.carousel.min.js"></script>
+
+    <!-- ====jQuery parallax==== -->
+    <script src="js/jquery.parallax-1.1.3.js"></script>
+
+    <!-- ====jQuery Tubular==== -->
+    <script src="js/jquery.tubular.1.0.js"></script>
+
+    <!-- ====jQuery VenoBox==== -->
+    <script src="js/venobox.min.js"></script>
+
+    <!-- ====jQuery Camera==== -->
+    <script src="js/camera.min.js"></script>
+
+    <!-- ====jQuery Nicescroll and knob==== -->
+    <script src="js/nicescroll.js"></script>
+
+
+    <!--Opacity & Other IE fix for older browser-->
+    <!--[if lte IE 8]>
+            <script type="text/javascript" src="js/ie-opacity-polyfill.js"></script>
+        <![endif]-->
+
+    <!-- ====jQuery main script==== -->
+    <script src="js/main.js"></script>
+</body>
+</html>

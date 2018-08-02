@@ -1,0 +1,265 @@
+<?php
+
+	ob_start();
+	session_start();
+	require_once 'dbconnect.php';
+	include "sqlconnec.php";
+	// if session is not set this will redirect to login page
+	if( !isset($_SESSION['username']) ) {
+		header("Location: login_co.php");
+		exit;
+	}
+	// select loggedin users detail
+	$res=mysqli_query($conn,"SELECT * FROM users_co WHERE userId=".$_SESSION['username']);
+	$userRow=mysqli_fetch_array($res);
+//include "sqlconnec.php";
+	$search = $_POST['Search_1'];
+	$_SESSION['search_1']=$search;
+
+	$result = mysqli_query($conn,"SELECT * FROM temp_users WHERE userEmail='".$search."'");
+	$rows = mysqli_fetch_array($result);
+	$name=$rows['userName'];
+	$pass=$rows['userPass'];
+	$email=$rows['userEmail'];
+	$enum=$rows['enum'];
+	
+	$abc=isset($rows['userEmail']);
+	
+	if(!($abc))
+	{
+		header("Location: home_co.php");
+	}
+	
+	$result_1 = mysqli_query($conn,"SELECT * FROM users WHERE userEmail='".$search."'");
+	$rows_1 = mysqli_fetch_array($result_1);
+	//$payment=$rows['total_money'];
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Notion'18 - Registrations</title>
+
+
+    <!-- ====Open Sans==== -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700,700italic,800,300italic,600italic' rel='stylesheet' type='text/css'>
+
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+    <!-- ====Bootstrap css==== -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- ====Material==== -->
+    <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+
+    <!-- ====Font awesome css==== -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- ====Animate css==== -->
+    <link rel="stylesheet" href="css/animate.css">
+
+    <!-- ====Meanmenu css==== -->
+    <link rel="stylesheet" href="css/meanmenu.min.css">
+
+    <!-- ====VenoBox css==== -->
+    <link rel="stylesheet" href="css/venobox.css">
+
+    <!-- ====Camera css==== -->
+    <link rel="stylesheet" href="css/camera.css">
+
+    <!-- ====Owl carousel 2 css==== -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+
+    <!-- ====Custom css==== -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ====Favicons==== -->
+    <!--<link rel="apple-touch-icon-precomposed" href="img/favicon_app.png">-->
+    <link rel="shortcut icon" type="image/png" href="img/Notion1.jpeg" />
+
+    <!-- ====Institute-Course Selector==== -->
+    <script type= "text/javascript" src = "js/courses.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="js/html5shiv.min.js"></script>
+          <script src="js/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body id="body" class="onepage Border_radius border_radius">
+    <div class="pealoader_area">
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+	<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">NOTION</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!--li class="active"><a href="index.php">Back to Article</a></li>
+            <!--li><a href="http://www.codingcage.com/search/label/jQuery">jQuery</a></li>
+            <li><a href="http://www.codingcage.com/search/label/PHP">PHP</a></li-->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			  <span class="glyphicon glyphicon-user"></span>&nbsp;Hi' <?php echo $userRow['userEmail']; ?>&nbsp;<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="logout_co.php?coordinator"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div id="registration" class="registration section-padding">
+        <div class="container">
+            <div class="row mb70">
+                <div class="col-xs-12">
+                    <div class="section_title">
+                        <h2 class="sec_Hd">SEARCH</h2>
+                        <h5 class="sub_title">Search for payment</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <div class="form">
+                        <form action="<?php if($search==$rows_1['userEmail']){echo ("home_co.php");}else{echo("search_co_php.php");}?>" method="post" >
+                            <!--input type="text" name="enrollment" placeholder="Enrollment/Roll No." maxlength="12" required-->
+                            <input type="text" name="program_1" id="program" placeholder="<?php if($search==$rows_1['userEmail']){echo ("Already Registered");}else{echo("Confirm Participant");}?> " disabled="disabled" required>
+							<input type="text" name="abc" id="program" placeholder="<?php echo($name) ?>" disabled="disabled" required>
+							<input type="text" name="abc" id="program" placeholder="<?php echo($email) ?>" disabled="disabled" required>
+							<input type="text" name="abc-1" id="program" placeholder="<?php echo($enum) ?>" disabled="disabled" required>
+							<input type="text" name="abc-1" id="program" placeholder="<?php echo($pass) ?>" disabled="disabled" required>
+                    </div>
+                </div>                
+                <div class="col-xs-12 col-sm-4">
+                    <div class="form">
+                        <!--<form action="#" method="post">-->
+                            <button name="submit" type="submit">Yes</button>
+                        </form>
+						<form method="get" action="home_co.php">
+							<button type="submit">No</button>
+						</form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--====== PRICING & REGISTRATION END ======-->
+
+	<!--====== FOOTER AREA START ======-->
+    <footer id="contact" class="footer_area footer-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="contact_info">
+                                <h3>Contact <span>Us</span></h3>
+                                <ul class="address_info">
+                                    <li><i class="fa fa-map-marker"></i> L.J. Campus, Between Sarkhej Circle & Kataria Motors, S.G. Road, Ahmedabad - 382210</li>
+                                    <li><i class="fa fa-envelope-o"></i> notion@ljinstitutes.edu.in</a></li>
+                                    <li><i class="fa fa-phone"></i> +91-9558233754</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="iconlink">
+                            <li>
+                                <a href="https://www.facebook.com/notionthetechfest/" target="_blank"> 
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/notion_2.0/" target="_blank">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <p>&copy; Notion'18. All Rights Reserved</p>
+                    </div>
+                </div>
+            </div>
+            <div class="back-to-top">
+                <a href="#">
+                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!--====== FOOTER AREA END ======-->
+	<!-- ====jQuery Latest version==== -->
+    <script src="js/vendor/jquery-1.12.0.min.js"></script>
+
+    <!-- ====Google Maps API==== -->
+    <!--<script src="https://maps.googleapis.com/maps/api/js"></script>-->
+
+    <!-- ====Bootstrap JS==== -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- ====jQuery Counterup==== -->
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+
+    <!-- ====jQuery Countdown==== -->
+    <script src="js/jquery.lwtCountdown-1.0.js"></script>
+
+    <!-- ====jQuery Meanmenu==== -->
+    <script src="js/jquery.meanmenu.min.js"></script>
+
+    <!-- ====jQuery easing==== -->
+    <script src="js/jquery.easing.1.3.min.js"></script>
+
+    <!-- ====jQuery owl carousel==== -->
+    <script src="js/owl.carousel.min.js"></script>
+
+    <!-- ====jQuery parallax==== -->
+    <script src="js/jquery.parallax-1.1.3.js"></script>
+
+    <!-- ====jQuery Tubular==== -->
+    <script src="js/jquery.tubular.1.0.js"></script>
+
+    <!-- ====jQuery VenoBox==== -->
+    <script src="js/venobox.min.js"></script>
+
+    <!-- ====jQuery Camera==== -->
+    <script src="js/camera.min.js"></script>
+
+    <!-- ====jQuery Nicescroll and knob==== -->
+    <script src="js/nicescroll.js"></script>
+
+
+    <!--Opacity & Other IE fix for older browser-->
+    <!--[if lte IE 8]>
+            <script type="text/javascript" src="js/ie-opacity-polyfill.js"></script>
+        <![endif]-->
+
+    <!-- ====jQuery main script==== -->
+    <script src="js/main.js"></script>
+</body>
+</html>
