@@ -207,7 +207,7 @@
     if (nextevent.length) {
         nextevent.countDown({
             targetDate: {
-                'day': 11,
+                'day': 15,
                 'month': 8,
                 'year': 2018,
                 'hour': 11,
