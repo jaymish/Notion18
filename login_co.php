@@ -122,9 +122,9 @@
             	<hr />
             </div>
             
-            <div class="form-group">
+            <!--<div class="form-group">
             	<a href="register_co.php">Sign Up Here...</a>
-            </div>
+            </div>-->
         
         </div>
    
